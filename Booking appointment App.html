@@ -2,11 +2,11 @@
     <body>
         <form onsubmit="saveToLocalStorage(event)">
             <label>Name:</label>
-            <input type="text" name="username" required>
+            <input type="text" name="username" id="usernameInputTag" required>
             <label>Email:</label>
-            <input type="email" name="emailId" required>
+            <input type="email" name="emailId" id="emailInputTag" required>
             <label>Phone Number:</label>
-            <input type="tel" name="phonenumber">
+            <input type="tel" name="phonenumber" id="phonenumberInputTag">
             <button>Submit</button>
         </form>
         <ul id="listOfitems"></ul>
@@ -38,9 +38,26 @@
                     localStorage.removeItem(obj.email);
                     parentEle.removeChild(childEle);
                 }
-                childEle.appendChild(delButton);
+                
                
 
+                const editButton = document.createElement('input');
+                editButton.type = "button";
+                editButton.value = "Edit";
+
+                editButton.onclick = () =>{
+                    localStorage.removeItem(obj.email);
+                    parentEle.removeChild(childEle);
+                    document.getElementById('usernameInputTag').vaue = obj.name;
+                    document.getElementById('emailInputTag').vaue = obj.email;
+                    document.getElementById('phonenumberInputTag').vaue = obj.phone;
+                
+                }
+                childEle.appendChild(delButton);
+                childEle.appendChild(editButton);
+                parentEle.appendChild(childEle);
+            
+            
             }
         </script>
 
