@@ -26,8 +26,21 @@
                 showUserOnScreen(obj)
             }
             function showUserOnScreen(obj){
-                const parentEle = document.getElementById('listOfitems')
-                parentEle.innerHTML = parentEle.innerHTML + `<li>${obj.name} - ${obj.email} - ${obj.phone}</li>`
+                const parentEle = document.getElementById('listOfitems');
+                const childEle = document.createElement('li');
+                childEle.textContent = obj.name+'-'+obj.email+'-'+obj.phone+'-';
+
+                const delButton = document.createElement('input');
+                delButton.type = "button";
+                delButton.value = "Delete";
+
+                delButton.onclick = () => {
+                    localStorage.removeItem(obj.email);
+                    parentEle.removeChild(childEle);
+                }
+                childEle.appendChild(delButton);
+               
+
             }
         </script>
 
